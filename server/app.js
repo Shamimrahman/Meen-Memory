@@ -17,6 +17,9 @@ app.use(cors());
 //db
 require("./db/connection");
 
+//routing
+const router = require("./Routes/routes");
+app.use(router);
 //connection
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
