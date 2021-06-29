@@ -1,5 +1,6 @@
 const postBlog = require("../Models/postData");
 const mongoose = require("mongoose");
+
 module.exports.postData = async (req, res) => {
   const { title, creator, message, selectedFile, tags } = req.body;
   const newpostBlog = new postBlog({
@@ -52,3 +53,19 @@ module.exports.delData = async (req, res) => {
     res.status(200).json({ msg: "Blog Delete Successfully" });
   }
 };
+
+module.exports.likePost=async (req,res)=>{
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.status(404).send(`No post with id: ${id}`);
+
+  }
+
+  else{
+    const post=await postBlog.findById(id)
+    const updatedPost=await postBlog.findByIdAndUpdate(id,{likeCount:post.likeCount+1},{new:true})
+    res.json(updatedPost)
+  }
+}
+
+

@@ -16,3 +16,5 @@ mongoose
 
     //then r catch part ai hoilo promise
   );
+
+  mongoose.set('useFindAndModify', false);

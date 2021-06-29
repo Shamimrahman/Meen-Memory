@@ -5,11 +5,14 @@ const {
   postData,
   updateData,
   delData,
+  likePost
 } = require("../Controller/post");
 
-router.post("/post", postData);
-router.get("/post", getData);
+router.post("/", postData);
+router.get("/", getData);
 router.patch("/:id", updateData);
 router.delete("/:id", delData);
+router.patch('/:id/likePost', likePost);
+
 
 module.exports = router;
